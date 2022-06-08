@@ -1,10 +1,15 @@
 import "../styles/Featured.css";
+// import {Link} from "react-router-dom";
 
-const Featured = () => {
+
+const Featured = ({id}) => {
     return (
-        <div className="featured-work">
-            
-        </div>
+      
+            <div className="featured-work">
+                hello
+            </div>
+       
+    
     )
 }
 

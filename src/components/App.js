@@ -1,7 +1,9 @@
 import { Component } from 'react';
 import '../styles/App.css';
 import NavBar from "./NavBar";
-import WorksContainer from "./WorksContainer"
+import WorksContainer from "./WorksContainer";
+import {Route} from "react-router-dom"; 
+import Featured from "./Featured"
 
 class App extends Component {
   constructor() {
@@ -10,9 +12,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // this.getIDs().then(data => this.setState({ids: data.objectIDs}))
-    // const id = this.getFeaturedID()
-    // this.getFeaturedWork(id)
     fetch("https://collectionapi.metmuseum.org/public/collection/v1/search?&hasImages=true&q=Paintings&isHighlight=true")
     .then(response => response.json())
     .then(data => {
@@ -24,23 +23,6 @@ class App extends Component {
     })
   }
 
-  // getIDs = async () => {
-  //   const response = await fetch("https://collectionapi.metmuseum.org/public/collection/v1/search?&hasImages=true&q=paintings&isHighlight=true");
-  //   return await response.json();
-  // }
-
-  // getFeaturedID = () => {
-  //   const index = Math.floor(Math.random() * this.state.ids.length)
-  //   const id = this.state.ids[index]
-  //   return id
-  // }
-
-  // getFeaturedWork = async (id) => {
-  //   const response = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`);
-  //   const data = await response.json();
-  //   return this.setState({ featuredWork: data });
-  // }
-
   render() {
     const titles = this.state.gallery.map(work => {
       return (<p>{work.title}</p>)
@@ -48,8 +30,12 @@ class App extends Component {
     return (
       <div>
         <NavBar/>
-        <WorksContainer gallery={this.state.gallery}/>
-    
+        <Route exact path="/">
+          <WorksContainer gallery={this.state.gallery}/>
+        </Route>
+        <Route path="/:id" render={({ match }) => <Featured id={parseInt(match.params.id)}/>}/>
+          
+      
       </div>
     )
   }
@@ -57,4 +43,3 @@ class App extends Component {
 
 
 export default App;
-// {titles}
