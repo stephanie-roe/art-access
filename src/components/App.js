@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import '../styles/App.css';
 import NavBar from "./NavBar";
+import WorksContainer from "./WorksContainer"
 
 class App extends Component {
   constructor() {
@@ -47,7 +48,8 @@ class App extends Component {
     return (
       <div>
         <NavBar/>
-        {titles}
+        <WorksContainer gallery={this.state.gallery}/>
+    
       </div>
     )
   }
@@ -55,3 +57,4 @@ class App extends Component {
 
 
 export default App;
+// {titles}

@@ -1,9 +1,14 @@
 import "../styles/WorksContainer.css";
+import Work from "./Work";
 // this is the cotainer that holds all of the work thumbnails
 
-const WorksContainer = () => {
+const WorksContainer = ({gallery}) => {
+    const works = gallery.map(work => {
+        return <Work details={work}/>
+    })
     return (
         <div className="works-container">
+            {works}
         </div>
     )
 }
