@@ -13,7 +13,7 @@ class App extends Component {
     // this.getIDs().then(data => this.setState({ids: data.objectIDs}))
     // const id = this.getFeaturedID()
     // this.getFeaturedWork(id)
-    fetch("https://collectionapi.metmuseum.org/public/collection/v1/search?&hasImages=true&q=paintings&isHighlight=true")
+    fetch("https://collectionapi.metmuseum.org/public/collection/v1/search?&hasImages=true&q=Paintings&isHighlight=true")
     .then(response => response.json())
     .then(data => {
       data.objectIDs.forEach(id => {
