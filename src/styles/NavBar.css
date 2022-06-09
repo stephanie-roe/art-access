@@ -25,7 +25,8 @@ input {
     border: none;
 }
 
-button {
+.home-btn,
+.collection-btn {
     padding: 20px 30px;
     border-radius: 20px;
     color: white;

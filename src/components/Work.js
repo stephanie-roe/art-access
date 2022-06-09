@@ -8,7 +8,7 @@ const Work = ({src, title, id}) => {
         return (
             <Link to={`/${id}`}>
             <div className="work" id={id}>
-                <img src={src} alt={title}/>
+                <img className="thumbnail" src={src} alt={title}/>
             </div>
             </Link>
         )
