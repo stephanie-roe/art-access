@@ -28,19 +28,24 @@ class App extends Component {
 
 
   componentDidMount() {
-    fetch("https://collectionapi.metmuseum.org/public/collection/v1/search?&hasImages=true&q=Paintings&isHighlight=true")
-    .then(response => response.json())
-    .then(data => {
-      data.objectIDs.forEach(id => {
-        fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`)
-        .then(response => response.json())
-        .then(data => {
-          if (!this.state.gallery.includes(data)) {
-            this.setState({gallery: [...this.state.gallery, data]})
-          }
-        })
-      })
-    })
+    this.getData()
+  }
+
+
+getData = async () => {
+   const response = await fetch("https://collectionapi.metmuseum.org/public/collection/v1/search?&hasImages=true&q=Paintings&isHighlight=true");
+    const data = await response.json();
+    data.objectIDs.forEach(id => {
+     this.getGalleryObject(id)
+    });
+ }
+
+  getGalleryObject = async (id) => {
+    const response = await  fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`)
+    const data = await response.json()
+      if (!this.state.gallery.includes(data)) {
+        return this.setState({ gallery: [...this.state.gallery,data] });
+      }
   }
 
   addToCollection = (id) => {
@@ -51,6 +56,9 @@ class App extends Component {
   }
 
   returnSearch = (event) => {
+    console.log("1", this.state.gallery[0])
+    console.log("2", this.state.gallery[1])
+    console.log("3", this.state.gallery[2])
     this.setState( {query: event.target.value, searchResults: this.state.gallery });
     const result = this.state.gallery.filter(work => {
       return work.artistDisplayName.toLowerCase().includes(event.target.value.toLowerCase());
