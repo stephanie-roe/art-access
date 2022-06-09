@@ -35,8 +35,6 @@ class Featured extends Component {
        .then(data => this.setState({details: data}))
     }
 
-    //either featured work needs to live in app or I need to do another fetch here 
-
 
     render() {
         return (
