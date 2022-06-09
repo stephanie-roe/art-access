@@ -2,7 +2,7 @@ import "../styles/Featured.css";
 // import {Link} from "react-router-dom";
 
 
-const Featured = ({id, gallery}) => {
+const Featured = ({id, gallery, addToCollection}) => {
     const details = gallery.find(work => {
         return work.objectID === id
     })
@@ -16,7 +16,7 @@ const Featured = ({id, gallery}) => {
                 <p>{details.objectDate}</p>
             </div>
             <img src={details.primaryImage} alt={details.title}/>
-            <button className="add-to-collection-btn">add to collection</button>
+            <button className="add-to-collection-btn" onClick={() => addToCollection(id)}>add to collection</button>
         </div>
     )
 }

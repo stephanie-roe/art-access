@@ -8,8 +8,15 @@ import Featured from "./Featured"
 class App extends Component {
   constructor() {
     super();
-    this.state = {featuredWork: {}, gallery: []}
+    this.state = {featuredWork: {}, gallery: [], myCollection: []}
   }
+
+  // it might be a good idea to add the clicked on thumbnail to the state of the app as well. To do this, I could build out a method that updates state and pass it down to the work and add an onclick. 
+
+  // IDEA(nice to have)- add a spotlight object to the state and that will randomly rotate to feature a work at the top of the page before the user scrolls to browse all of the remaining works of art 
+
+
+
 
   componentDidMount() {
     fetch("https://collectionapi.metmuseum.org/public/collection/v1/search?&hasImages=true&q=Paintings&isHighlight=true")
@@ -23,17 +30,19 @@ class App extends Component {
     })
   }
 
+  addToCollection = (id) => {
+    const addition = this.state.gallery.find(work => work.objectID === id)
+    this.setState({myCollection: [...this.state.myCollection, addition]})
+  }
+
   render() {
-    const titles = this.state.gallery.map(work => {
-      return (<p>{work.title}</p>)
-    })
     return (
       <div>
         <NavBar/>
         <Route exact path="/">
           <WorksContainer gallery={this.state.gallery}/>
         </Route>
-        <Route path="/:id" render={({ match }) => <Featured id={parseInt(match.params.id)} gallery={this.state.gallery}/>}/>
+        <Route path="/:id" render={({ match }) => <Featured id={parseInt(match.params.id)} gallery={this.state.gallery} addToCollection={this.addToCollection}/>}/>
           
       
       </div>
