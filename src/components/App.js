@@ -2,7 +2,7 @@ import { Component } from 'react';
 import '../styles/App.css';
 import NavBar from "./NavBar";
 import WorksContainer from "./WorksContainer";
-import {Route} from "react-router-dom"; 
+import {Route, Switch} from "react-router-dom"; 
 import Featured from "./Featured";
 import CollectionContainer from "./CollectionContainer";
 
@@ -51,11 +51,14 @@ class App extends Component {
     return (
       <div>
         <NavBar/>
-        <Route exact path="/">
-          <WorksContainer gallery={this.state.gallery}/>
-        </Route>
-        <Route path="/:id" render={({ match }) => <Featured id={parseInt(match.params.id)} gallery={this.state.gallery} addToCollection={this.addToCollection} />}/>
-        <Route path="/my-collection" render={() => <CollectionContainer />}/>
+        <Switch>
+          <Route exact path="/">
+            <WorksContainer gallery={this.state.gallery}/>
+          </Route>
+          <Route exact path="/my-collection" render={() => <CollectionContainer />}/>
+          <Route exact path="/:id" render={({ match }) => <Featured id={parseInt(match.params.id)} gallery={this.state.gallery} addToCollection={this.addToCollection} />}/>
+        </Switch>
+        
       
       </div>
     )
