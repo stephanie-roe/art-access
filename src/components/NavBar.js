@@ -6,7 +6,9 @@ return (
     <div className="nav-bar">
         <h1>Art Access</h1>
         <div className="search-and-btn">
-            <button>my collection</button>
+            <Link to="/my-collection">
+                 <button>my collection</button>
+            </Link>
             <Link to="/">
                 <button>home</button>
             </Link>

@@ -7,7 +7,7 @@ const Work = ({src, title, id}) => {
     if (src) {
         return (
             <Link to={`/${id}`}>
-            <div className="work">
+            <div className="work" id={id}>
                 <img src={src} alt={title}/>
             </div>
             </Link>
@@ -17,3 +17,5 @@ const Work = ({src, title, id}) => {
 }
 
 export default Work;
+
+//on click to update app here is messing up my router. 

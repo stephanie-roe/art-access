@@ -3,7 +3,8 @@ import '../styles/App.css';
 import NavBar from "./NavBar";
 import WorksContainer from "./WorksContainer";
 import {Route} from "react-router-dom"; 
-import Featured from "./Featured"
+import Featured from "./Featured";
+import CollectionContainer from "./CollectionContainer";
 
 class App extends Component {
   constructor() {
@@ -35,6 +36,17 @@ class App extends Component {
     this.setState({myCollection: [...this.state.myCollection, addition]})
   }
 
+  // findFeaturedWork = (e) => {
+  //   e.preventDefault()
+  //   const details = this.state.gallery.find(work => {
+  //     console.log("WORK ID", work.objectID)
+
+  //     return parseInt(work.objectID) === parseInt(e.target.id)
+  //   })
+  //   this.setState({featuredWork: details})
+  // }
+
+
   render() {
     return (
       <div>
@@ -42,8 +54,8 @@ class App extends Component {
         <Route exact path="/">
           <WorksContainer gallery={this.state.gallery}/>
         </Route>
-        <Route path="/:id" render={({ match }) => <Featured id={parseInt(match.params.id)} gallery={this.state.gallery} addToCollection={this.addToCollection}/>}/>
-          
+        <Route path="/:id" render={({ match }) => <Featured id={parseInt(match.params.id)} gallery={this.state.gallery} addToCollection={this.addToCollection} />}/>
+        <Route path="/my-collection" render={() => <CollectionContainer />}/>
       
       </div>
     )
