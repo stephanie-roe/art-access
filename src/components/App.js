@@ -9,7 +9,11 @@ import CollectionContainer from "./CollectionContainer";
 class App extends Component {
   constructor() {
     super();
-    this.state = {featuredWork: {}, gallery: [], myCollection: []}
+    this.state = {featuredWork: {}, 
+                  gallery: [], 
+                  myCollection: [],
+                  query: "",
+                  searchResults: [] }
   }
 
   // it might be a good idea to add the clicked on thumbnail to the state of the app as well. To do this, I could build out a method that updates state and pass it down to the work and add an onclick. 
@@ -36,21 +40,19 @@ class App extends Component {
     this.setState({myCollection: [...this.state.myCollection, addition]})
   }
 
-  // findFeaturedWork = (e) => {
-  //   e.preventDefault()
-  //   const details = this.state.gallery.find(work => {
-  //     console.log("WORK ID", work.objectID)
-
-  //     return parseInt(work.objectID) === parseInt(e.target.id)
-  //   })
-  //   this.setState({featuredWork: details})
-  // }
+  returnSearch = (event) => {
+    this.setState( {query: event.target.value, searchResults: this.state.gallery });
+    const result = this.state.gallery.filter(work => {
+      return work.artistDisplayName.toLowerCase().includes(event.target.value.toLowerCase());
+    });
+    this.setState({ searchResults: result})
+  }
 
 
   render() {
     return (
       <div>
-        <NavBar/>
+        <NavBar returnSearch={this.returnSearch} query={this.state.query} />
         <Switch>
           <Route exact path="/">
             <WorksContainer gallery={this.state.gallery}/>
