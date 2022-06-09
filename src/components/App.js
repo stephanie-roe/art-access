@@ -55,7 +55,7 @@ class App extends Component {
           <Route exact path="/">
             <WorksContainer gallery={this.state.gallery}/>
           </Route>
-          <Route exact path="/my-collection" render={() => <CollectionContainer />}/>
+          <Route exact path="/my-collection" render={() => <CollectionContainer collection={this.state.myCollection}/>}/>
           <Route exact path="/:id" render={({ match }) => <Featured id={parseInt(match.params.id)} gallery={this.state.gallery} addToCollection={this.addToCollection} />}/>
         </Switch>
         
