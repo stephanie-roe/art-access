@@ -1,4 +1,5 @@
 import "../styles/NavBar.css";
+import {Link} from "react-router-dom";
 
 const NavBar = () => {
 return (
@@ -6,7 +7,9 @@ return (
         <h1>Art Access</h1>
         <div className="search-and-btn">
             <button>my collection</button>
-            <button>home</button>
+            <Link to="/">
+                <button>home</button>
+            </Link>
             <input type="text" name="search" placeholder="search"/>
         </div>
     </div>

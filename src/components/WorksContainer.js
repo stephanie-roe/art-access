@@ -4,7 +4,7 @@ import Work from "./Work";
 
 const WorksContainer = ({gallery}) => {
     const works = gallery.map(work => {
-        return <Work src={work.primaryImage} title={work.title}/>
+        return <Work src={work.primaryImage} title={work.title} id={work.objectID} key={gallery.indexOf(work)}/>
     })
     return (
         <div className="works-container">
