@@ -6,7 +6,6 @@ const Featured = ({id, gallery}) => {
     const details = gallery.find(work => {
         return work.objectID === id
     })
-    console.log(details)
     return (
         <div className="featured-work">
             <div className="details">
