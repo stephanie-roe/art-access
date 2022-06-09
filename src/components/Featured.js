@@ -37,19 +37,21 @@ class Featured extends Component {
 
 
     render() {
-        return (
+        return (<div className="featured-parent-container">
                     <div className="featured-work">
-                        <div className="details">
-                            <p>{this.state.details.title}</p>
-                            {this.state.details.artistDisplayName === "Unknown" ? <p>{this.state.details.artistSuffix}</p> : <p>{this.state.details.artistDisplayName}</p>}
-                            <p>{this.state.details.medium}</p>
-                            <p>{this.state.details.dimensions}</p>
-                            <p>{this.state.details.objectDate}</p>
+                        <div className="details-and-btn-container">
+                            <div className="details">
+                                <p className="title" >{this.state.details.title}</p>
+                                {this.state.details.artistDisplayName === "Unknown" ? <p>{this.state.details.artistSuffix}</p> : <p>{this.state.details.artistDisplayName}</p>}
+                                <p>{this.state.details.medium}</p>
+                                <p>{this.state.details.dimensions}</p>
+                                <p>{this.state.details.objectDate}</p>
+                            </div>
+                            <button className="add-to-collection-btn" onClick={() => this.props.addToCollection(this.state.id)}>add to collection</button>
                         </div>
-                        <img src={this.state.details.primaryImage} alt={this.state.details.title}/>
-                        <button className="add-to-collection-btn" onClick={() => this.props.addToCollection(this.state.id)}>add to collection</button>
+                        <img className="featured-image" src={this.state.details.primaryImage} alt={this.state.details.title}/>
                     </div>
-                )
+                </div>)
     }
 }
 

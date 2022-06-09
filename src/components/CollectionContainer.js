@@ -1,4 +1,4 @@
-// import "../styles/CollectionConatiner.css";
+import "../styles/CollectionContainer.css";
 import CollectionCard from "./CollectionCard";
 
 const CollectionContainer = ({collection}) => {
@@ -8,8 +8,13 @@ const CollectionContainer = ({collection}) => {
     // iterate over collection saved in state to return an array of JSX elements 
     // return those in a div 
     return (
-        <div className="collection-container">
-            { cards }
+        <div className="collection-parent-container">
+            <div className="heading-container">
+                <h2>Collection</h2>
+            </div>
+            <div className="collection-container">
+                { cards }
+            </div>
         </div>
     )
 }

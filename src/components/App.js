@@ -22,6 +22,8 @@ class App extends Component {
 
   // IDEA(nice to have)- show a message on the top of the screen when the user is seeing results of a search that says "results for [query]"
 
+    // IDEA(nice to have)- it could be cool to allow the user to search by multiple things (artist, region, materials, tags, etc.)
+
 
 
 
@@ -43,7 +45,9 @@ class App extends Component {
 
   addToCollection = (id) => {
     const addition = this.state.gallery.find(work => work.objectID === id)
-    this.setState({myCollection: [...this.state.myCollection, addition]})
+    if (!this.state.myCollection.includes(addition)) {
+      this.setState({myCollection: [...this.state.myCollection, addition]})
+    }
   }
 
   returnSearch = (event) => {

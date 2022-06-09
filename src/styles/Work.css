@@ -1,4 +1,13 @@
-img {
-    height: 500px;
+.thumbnail {
+    height: 300px;
     width: auto;
+}
+
+.work {
+    height: 500;
+    width: 30vw;
+    display: flex;
+    justify-content: center;
+    justify-content: center;
+    margin: 10px;
 }
