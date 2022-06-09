@@ -9,12 +9,18 @@ import CollectionContainer from "./CollectionContainer";
 class App extends Component {
   constructor() {
     super();
-    this.state = {featuredWork: {}, gallery: [], myCollection: []}
+    this.state = {featuredWork: {}, 
+                  gallery: [], 
+                  myCollection: [],
+                  query: "",
+                  searchResults: [] }
   }
 
   // it might be a good idea to add the clicked on thumbnail to the state of the app as well. To do this, I could build out a method that updates state and pass it down to the work and add an onclick. 
 
   // IDEA(nice to have)- add a spotlight object to the state and that will randomly rotate to feature a work at the top of the page before the user scrolls to browse all of the remaining works of art 
+
+  // IDEA(nice to have)- show a message on the top of the screen when the user is seeing results of a search that says "results for [query]"
 
 
 
@@ -26,7 +32,11 @@ class App extends Component {
       data.objectIDs.forEach(id => {
         fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`)
         .then(response => response.json())
-        .then(data => this.setState({gallery: [...this.state.gallery, data]}))
+        .then(data => {
+          if (!this.state.gallery.includes(data)) {
+            this.setState({gallery: [...this.state.gallery, data]})
+          }
+        })
       })
     })
   }
@@ -36,30 +46,34 @@ class App extends Component {
     this.setState({myCollection: [...this.state.myCollection, addition]})
   }
 
-  // findFeaturedWork = (e) => {
-  //   e.preventDefault()
-  //   const details = this.state.gallery.find(work => {
-  //     console.log("WORK ID", work.objectID)
+  returnSearch = (event) => {
+    this.setState( {query: event.target.value, searchResults: this.state.gallery });
+    const result = this.state.gallery.filter(work => {
+      return work.artistDisplayName.toLowerCase().includes(event.target.value.toLowerCase());
+    });
+    this.setState({ searchResults: result})
+  }
 
-  //     return parseInt(work.objectID) === parseInt(e.target.id)
-  //   })
-  //   this.setState({featuredWork: details})
-  // }
+  clearSearch = () => {
+    this.setState({ query: "", searchResults: [] })
+  }
 
 
   render() {
     return (
       <div>
-        <NavBar/>
+        <NavBar returnSearch={this.returnSearch} query={this.state.query} clearSearch={this.clearSearch}/>
         <Switch>
-          <Route exact path="/">
-            <WorksContainer gallery={this.state.gallery}/>
-          </Route>
+          <Route exact path="/" render={ () => {
+            if (!this.state.searchResults.length && !this.state.query) {
+              return ( <WorksContainer gallery={this.state.gallery}/> )
+            } else {
+              return ( <WorksContainer gallery={this.state.searchResults}/> )
+            }
+          }} />
           <Route exact path="/my-collection" render={() => <CollectionContainer collection={this.state.myCollection}/>}/>
           <Route exact path="/:id" render={({ match }) => <Featured id={parseInt(match.params.id)} gallery={this.state.gallery} addToCollection={this.addToCollection} />}/>
         </Switch>
-        
-      
       </div>
     )
   }
@@ -67,3 +81,5 @@ class App extends Component {
 
 
 export default App;
+
+//add in else if for search bar to error handle it 
