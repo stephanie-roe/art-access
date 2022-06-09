@@ -20,6 +20,8 @@ class App extends Component {
 
   // IDEA(nice to have)- add a spotlight object to the state and that will randomly rotate to feature a work at the top of the page before the user scrolls to browse all of the remaining works of art 
 
+  // IDEA(nice to have)- show a message on the top of the screen when the user is seeing results of a search that says "results for [query]"
+
 
 
 
@@ -30,7 +32,11 @@ class App extends Component {
       data.objectIDs.forEach(id => {
         fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`)
         .then(response => response.json())
-        .then(data => this.setState({gallery: [...this.state.gallery, data]}))
+        .then(data => {
+          if (!this.state.gallery.includes(data)) {
+            this.setState({gallery: [...this.state.gallery, data]})
+          }
+        })
       })
     })
   }
@@ -48,20 +54,26 @@ class App extends Component {
     this.setState({ searchResults: result})
   }
 
+  clearSearch = () => {
+    this.setState({ query: "", searchResults: [] })
+  }
+
 
   render() {
     return (
       <div>
-        <NavBar returnSearch={this.returnSearch} query={this.state.query} />
+        <NavBar returnSearch={this.returnSearch} query={this.state.query} clearSearch={this.clearSearch}/>
         <Switch>
-          <Route exact path="/">
-            <WorksContainer gallery={this.state.gallery}/>
-          </Route>
+          <Route exact path="/" render={ () => {
+            if (!this.state.searchResults.length && !this.state.query) {
+              return ( <WorksContainer gallery={this.state.gallery}/> )
+            } else {
+              return ( <WorksContainer gallery={this.state.searchResults}/> )
+            }
+          }} />
           <Route exact path="/my-collection" render={() => <CollectionContainer collection={this.state.myCollection}/>}/>
           <Route exact path="/:id" render={({ match }) => <Featured id={parseInt(match.params.id)} gallery={this.state.gallery} addToCollection={this.addToCollection} />}/>
         </Switch>
-        
-      
       </div>
     )
   }
@@ -69,3 +81,5 @@ class App extends Component {
 
 
 export default App;
+
+//add in else if for search bar to error handle it 

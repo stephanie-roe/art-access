@@ -1,7 +1,7 @@
 import "../styles/NavBar.css";
 import {Link} from "react-router-dom";
 
-const NavBar = ({returnSearch, query}) => {
+const NavBar = ({returnSearch, query, clearSearch}) => {
 return (
     <div className="nav-bar">
         <h1>Art Access</h1>
@@ -10,7 +10,7 @@ return (
                  <button>my collection</button>
             </Link>
             <Link to="/">
-                <button>home</button>
+                <button onClick={() => clearSearch()}>home</button>
             </Link>
             <input type="text" name="search" placeholder="search" value={query} onChange={ event => returnSearch(event)}/>
         </div>
