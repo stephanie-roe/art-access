@@ -33,7 +33,7 @@ class App extends Component {
         <Route exact path="/">
           <WorksContainer gallery={this.state.gallery}/>
         </Route>
-        <Route path="/:id" render={({ match }) => <Featured id={parseInt(match.params.id)}/>}/>
+        <Route path="/:id" render={({ match }) => <Featured id={parseInt(match.params.id)} gallery={this.state.gallery}/>}/>
           
       
       </div>
