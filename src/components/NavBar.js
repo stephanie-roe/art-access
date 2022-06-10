@@ -12,7 +12,7 @@ return (
             <Link to="/">
                 <button className="home-btn" onClick={() => clearSearch()}>home</button>
             </Link>
-            <input type="text" name="search" placeholder="search" value={query} onChange={ event => returnSearch(event)}/>
+            <input className="search-bar" type="text" name="search" placeholder="search" value={query} onChange={ event => returnSearch(event)}/>
         </div>
     </div>
 )

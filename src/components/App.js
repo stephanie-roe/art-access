@@ -13,7 +13,8 @@ class App extends Component {
                   gallery: [], 
                   myCollection: [],
                   query: "",
-                  searchResults: [] }
+                  searchResults: [],
+                  error: false }
   }
 
   // it might be a good idea to add the clicked on thumbnail to the state of the app as well. To do this, I could build out a method that updates state and pass it down to the work and add an onclick. 
@@ -28,25 +29,71 @@ class App extends Component {
 
 
   componentDidMount() {
-    return this.getData()
-  }
-
-
-getData = async () => {
-   const response = await fetch("https://collectionapi.metmuseum.org/public/collection/v1/search?&hasImages=true&q=Paintings&isHighlight=true");
-    const data = await response.json();
-    data.objectIDs.forEach(id => {
-     this.getGalleryObject(id)
-    });
- }
-
-  getGalleryObject = async (id) => {
-    const response = await  fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`)
-    const data = await response.json()
-      if (!this.state.gallery.includes(data)) {
-        return this.setState({ gallery: [...this.state.gallery,data] });
+    fetch("https://collectionapi.metmuseum.org/public/collection/v1/search?&hasImages=true&q=Paintings&isHighlight=true")
+    .then(response =>{
+      if (response.ok) {
+        return response.json()
+      } else {
+        throw Error(response.statusText)
       }
+    })
+    .then(data => {
+      data.objectIDs.forEach(id => {
+        fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`)
+        .then(response => {
+          if (response.ok) {
+            return response.json()
+          } else throw Error(response.statusText)
+        })
+        .then(data => {
+          if (!this.state.gallery.includes(data)) {
+            this.setState({gallery: [...this.state.gallery, data]})
+          }
+        })
+      })
+    })
+    .catch(error => console.log("error"))
+
+
+    // return this.getData()
   }
+
+
+// getData = async () => {
+//   //  const response = await fetch("https://collectionapi.metmuseum.org/public/collection/v1/search?&hasImages=true&q=Paintings&isHighlight=true");
+//   //   const data = await response.json();
+//   //   data.objectIDs.forEach(id => {
+//   //    this.getGalleryObject(id)
+//   //   });
+//     try {
+//       const response = await fetch("https://collectionapi.metmuseum.org/public/collection/v1/search?&hasImages=true&q=Paintings&isHighlight=true");
+//       const data = await response.json();
+//       console.log(data)
+//       data.objectIDs.forEach(id => {
+//        this.getGalleryObject(id)
+//       });
+//     }  catch(error) {
+//       this.setState({error: true})
+//     }
+//  }
+
+  // getGalleryObject = async (id) => {
+  //   try {
+  //     const response = await  fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`)
+  //     const data = await response.json()
+  //     console.log(data)
+  //   // if (!this.state.gallery.includes(data)) {
+  //     return this.setState({ gallery: [...this.state.gallery,data] });
+  //   // }
+  //   } catch (error) {
+  //     this.setState({error: true})
+  //   }
+  //   // const response = await  fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`)
+  //   // const data = await response.json()
+  //     // if (!this.state.gallery.includes(data)) {
+  //     //   return this.setState({ gallery: [...this.state.gallery,data] });
+  //     // }
+  // }
 
   addToCollection = (id) => {
     const addition = this.state.gallery.find(work => work.objectID === id)
@@ -72,22 +119,29 @@ getData = async () => {
 
 
   render() {
-    return (
-      <div>
-        <NavBar returnSearch={this.returnSearch} query={this.state.query} clearSearch={this.clearSearch}/>
-        <Switch>
-          <Route exact path="/" render={ () => {
-            if (!this.state.searchResults.length && !this.state.query) {
-              return ( <WorksContainer gallery={this.state.gallery}/> )
-            } else {
-              return ( <WorksContainer gallery={this.state.searchResults}/> )
-            }
-          }} />
-          <Route exact path="/my-collection" render={() => <CollectionContainer collection={this.state.myCollection}/>}/>
-          <Route exact path="/:id" render={({ match }) => <Featured id={parseInt(match.params.id)} gallery={this.state.gallery} addToCollection={this.addToCollection} />}/>
-        </Switch>
-      </div>
-    )
+    if (this.state.error) {
+      return <h1>Oh no!</h1>
+    } else {
+      return (
+        <div>
+          <NavBar returnSearch={this.returnSearch} query={this.state.query} clearSearch={this.clearSearch}/>
+          <Switch>
+            <Route exact path="/" render={ () => {
+              if (!this.state.searchResults.length && !this.state.query) {
+                return ( <WorksContainer gallery={this.state.gallery}/> )
+              } else if (!this.state.searchResults.length && this.state.query ) {
+                return <h2>No results, please try again.</h2>
+              }else {
+                return ( <WorksContainer gallery={this.state.searchResults}/> )
+              }
+            }} />
+            <Route exact path="/my-collection" render={() => <CollectionContainer collection={this.state.myCollection}/>}/>
+            <Route exact path="/:id" render={({ match }) => <Featured id={parseInt(match.params.id)} gallery={this.state.gallery} addToCollection={this.addToCollection} />}/>
+          </Switch>
+        </div>
+      )
+    }
+
   }
 }
 
