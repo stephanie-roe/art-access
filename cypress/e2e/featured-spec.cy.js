@@ -27,4 +27,6 @@ describe("featured spec", () => {
     cy.get(".collection-btn").click()
     cy.contains("Collection")
   })
+
+  // might wanna stub the componentDidMount here, and incorporate error handling for if that fetch fails as well. 
 })
