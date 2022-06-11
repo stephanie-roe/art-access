@@ -6,7 +6,7 @@ describe("featured spec", () => {
     cy.intercept("https://collectionapi.metmuseum.org/public/collection/v1/objects/764095", {fixture: "work1"} )
     cy.intercept("https://collectionapi.metmuseum.org/public/collection/v1/objects/768547", {fixture: "work3"} )
 
-    cy.visit("http://localhost:3000/")     
+    cy.visit("http://localhost:3000/", {timeout: 3000})     
   })
 
   it ("should allow the user to click on a thumbnail and see a work's details", () => {
@@ -25,7 +25,12 @@ describe("featured spec", () => {
 
   it("should allow the user to return to the home page", () => {
     cy.get(".thumbnail").first().click()
-    cy.get(".home-btn").click().wait(1000)
-    cy.get(".works-container").children().should("have.length", 2)
+    cy.get(".home-btn").click()
+    cy.get(".works-container", {timeout: 3000}).children().should("have.length", 2)
+  })
+
+  it("should change the url to end with the id of the featured work", () => {
+    cy.get(".thumbnail").first().click()
+    cy.url().should("eq","http://localhost:3000/764095")
   })
 })
