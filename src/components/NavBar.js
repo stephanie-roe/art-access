@@ -1,5 +1,6 @@
 import "../styles/NavBar.css";
 import {Link} from "react-router-dom";
+import PropTypes from 'prop-types';
 
 const NavBar = ({returnSearch, query, clearSearch}) => {
 return (
@@ -19,3 +20,9 @@ return (
 }
 
 export default NavBar;
+
+NavBar.propTypes = {
+    query: PropTypes.string,
+    returnSearch: PropTypes.func, 
+    clearSearch: PropTypes.func
+  };

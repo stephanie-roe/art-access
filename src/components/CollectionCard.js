@@ -1,5 +1,6 @@
 import "../styles/CollectionCard.css";
 import {Link} from "react-router-dom";
+import PropTypes from 'prop-types';
 
 const CollectionCard = ({details}) => {
     return (
@@ -17,3 +18,7 @@ const CollectionCard = ({details}) => {
 }
 
 export default CollectionCard;
+
+CollectionCard.propTypes = {
+    details: PropTypes.object
+  };

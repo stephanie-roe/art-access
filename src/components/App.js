@@ -17,54 +17,11 @@ class App extends Component {
                   error: false }
   }
 
-  // it might be a good idea to add the clicked on thumbnail to the state of the app as well. To do this, I could build out a method that updates state and pass it down to the work and add an onclick. 
-
-  // IDEA(nice to have)- add a spotlight object to the state and that will randomly rotate to feature a work at the top of the page before the user scrolls to browse all of the remaining works of art 
-
-  // IDEA(nice to have)- show a message on the top of the screen when the user is seeing results of a search that says "results for [query]"
-
-    // IDEA(nice to have)- it could be cool to allow the user to search by multiple things (artist, region, materials, tags, etc.)
-
-
-
-
   componentDidMount() {
-    // fetch("https://collectionapi.metmuseum.org/public/collection/v1/search?&hasImages=true&q=Paintings&isHighlight=true")
-    // .then(response =>{
-    //   if (response.ok) {
-    //     return response.json()
-    //   } else {
-    //     throw Error(response.statusText)
-    //   }
-    // })
-    // .then(data => {
-    //   data.objectIDs.forEach(id => {
-    //     fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`)
-    //     .then(response => {
-    //       if (response.ok) {
-    //         return response.json()
-    //       } else throw Error(response.statusText)
-    //     })
-    //     .then(data => {
-    //       if (!this.state.gallery.includes(data)) {
-    //         this.setState({gallery: [...this.state.gallery, data]})
-    //       }
-    //     })
-    //   })
-    // })
-    // .catch(error => console.log("error"))
-
-
    this.getData()
   }
 
-
 getData = async () => {
-  //  const response = await fetch("https://collectionapi.metmuseum.org/public/collection/v1/search?&hasImages=true&q=Paintings&isHighlight=true");
-  //   const data = await response.json();
-  //   data.objectIDs.forEach(id => {
-  //    this.getGalleryObject(id)
-  //   });
     try {
       const response = await fetch("https://collectionapi.metmuseum.org/public/collection/v1/search?&hasImages=true&q=Paintings&isHighlight=true");
       const data = await response.json();
@@ -75,24 +32,6 @@ getData = async () => {
       this.setState({error: true})
     }
  }
-
-  // getGalleryObject = async (id) => {
-  //   try {
-  //     const response = await  fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`)
-  //     const data = await response.json()
-  //     console.log(data)
-  //   // if (!this.state.gallery.includes(data)) {
-  //     return this.setState({ gallery: [...this.state.gallery,data] });
-  //   // }
-  //   } catch (error) {
-  //     this.setState({error: true})
-  //   }
-  //   // const response = await  fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`)
-  //   // const data = await response.json()
-  //   //   if (!this.state.gallery.includes(data)) {
-  //   //     this.setState({ gallery: [...this.state.gallery,data] });
-  //   //   }
-  // }
 
   getGalleryObject = (id) => {
     fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`)
@@ -121,7 +60,6 @@ getData = async () => {
   clearSearch = () => {
     this.setState({ query: "", searchResults: [] })
   }
-
 
   render() {
     if (this.state.error) {

@@ -1,5 +1,6 @@
 import "../styles/CollectionContainer.css";
 import CollectionCard from "./CollectionCard";
+import PropTypes from 'prop-types';
 
 const CollectionContainer = ({collection}) => {
     const cards = collection.map(work => {
@@ -22,3 +23,8 @@ const CollectionContainer = ({collection}) => {
 }
 
 export default CollectionContainer;
+
+
+CollectionContainer.propTypes = {
+    collection: PropTypes.array
+  };
