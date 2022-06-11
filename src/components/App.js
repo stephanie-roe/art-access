@@ -68,7 +68,6 @@ getData = async () => {
     try {
       const response = await fetch("https://collectionapi.metmuseum.org/public/collection/v1/search?&hasImages=true&q=Paintings&isHighlight=true");
       const data = await response.json();
-      console.log(data)
       data.objectIDs.forEach(id => {
        this.getGalleryObject(id)
       });
@@ -154,4 +153,3 @@ getData = async () => {
 
 export default App;
 
-//add in else if for search bar to error handle it 
