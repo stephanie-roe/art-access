@@ -68,7 +68,6 @@ getData = async () => {
     try {
       const response = await fetch("https://collectionapi.metmuseum.org/public/collection/v1/search?&hasImages=true&q=Paintings&isHighlight=true");
       const data = await response.json();
-      console.log(data)
       data.objectIDs.forEach(id => {
        this.getGalleryObject(id)
       });
@@ -136,7 +135,7 @@ getData = async () => {
               if (!this.state.searchResults.length && !this.state.query) {
                 return ( <WorksContainer gallery={this.state.gallery}/> )
               } else if (!this.state.searchResults.length && this.state.query ) {
-                return <h2>No results, please try again.</h2>
+                return <h2 className="search-error">No results, please try again.</h2>
               }else {
                 return ( <WorksContainer gallery={this.state.searchResults}/> )
               }
@@ -154,4 +153,3 @@ getData = async () => {
 
 export default App;
 
-//add in else if for search bar to error handle it 

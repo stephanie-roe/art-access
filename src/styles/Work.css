@@ -1,13 +1,25 @@
 .thumbnail {
-    height: 300px;
-    width: auto;
+    height: auto;
+    width: 250px;
 }
 
 .work {
-    height: 300px;
-    width: 20vw;
+    height: auto;
+    width: 250px;
     display: flex;
     justify-content: center;
-    justify-content: center;
+    align-items: center;
     margin: 10px;
+}
+
+@media screen and (max-width: 415px) {
+    .work {
+        width: 300px;
+        height: auto;
+        margin: 5px;
+    }
+    .thumbnail {
+        width: 300px;
+        height: auto
+    }
 }

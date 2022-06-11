@@ -3,7 +3,7 @@ import CollectionCard from "./CollectionCard";
 
 const CollectionContainer = ({collection}) => {
     const cards = collection.map(work => {
-        return (<CollectionCard details={work}/>)
+        return (<CollectionCard details={work} key={work.objectID}/>)
     })
 
 

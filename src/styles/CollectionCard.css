@@ -23,3 +23,19 @@
 p {
     color: white;
 }
+
+
+@media screen and (max-width: 415px) {
+    .collection-card {
+        width: 80vw;
+        height: auto;
+        flex-direction: column-reverse;
+        margin: 5px;
+        align-items: center;
+    }
+
+    .collection-card-image {
+        width: 150px;
+        height: auto;
+    }
+  }

@@ -5,3 +5,16 @@
  align-items: center;
  justify-content: center;
 }
+
+@media screen and (max-width: 415px) {
+    .app {
+      width: 100vw;
+      overflow-x: hidden;
+      margin: 0px;
+    }
+
+    .search-error {
+        text-align: center;
+        font-size: 15px;
+    }
+  }

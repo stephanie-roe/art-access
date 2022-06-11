@@ -10,6 +10,7 @@ h1 {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    margin: 0px 20px;
 }
 
 .search-and-btn {
@@ -32,4 +33,30 @@ input {
     color: white;
     background-color: #474647;
     border: none;
+}
+
+@media screen and (max-width: 415px) {
+    .nav-bar {
+        flex-direction: column;
+        width: 100vw;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    .home-btn,
+    .collection-btn {
+        padding: 5px 10px;      
+    }
+
+    .search-and-btn {
+        width: 100vw;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    input {
+        padding: 5px 20px;
+    }
 }
