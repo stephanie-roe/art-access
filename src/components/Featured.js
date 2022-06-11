@@ -22,7 +22,7 @@ import {Link} from "react-router-dom";
 class Featured extends Component {
     constructor({id, gallery}) {
         super();
-        this.state = {details: {}, gallery: gallery, id: id}
+        this.state = {details: {}, gallery: gallery, id: id, error: false}
     }
 
     componentDidMount() {
@@ -31,12 +31,22 @@ class Featured extends Component {
     //    })
     //    this.setState({details: details})
        fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${this.state.id}`)
-       .then(response => response.json())
+       .then(response => {
+           if (response.ok) {
+               return response.json()
+           } else {
+               throw Error(response.statusText)
+           }
+       })
        .then(data => this.setState({details: data}))
+       .catch(error => this.setState({error: true}))
     }
 
 
     render() {
+        if (this.state.error) {
+            return <h2>Apologies, that page doesn't exist. Return home and try again.</h2>
+        } else {
         return (<div className="featured-parent-container">
                     <div className="featured-work">
                         <div className="details-and-btn-container">
@@ -52,6 +62,7 @@ class Featured extends Component {
                         <img className="featured-image" src={this.state.details.primaryImage} alt={this.state.details.title}/>
                     </div>
                 </div>)
+        }
     }
 }
 
