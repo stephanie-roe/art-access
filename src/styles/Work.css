@@ -11,3 +11,16 @@
     justify-content: center;
     margin: 10px;
 }
+
+@media screen and (max-width: 415px) {
+    .work {
+        width: 300px;
+        height: auto;
+        margin: 5px;
+        margin: 0px;
+    }
+    .thumbnail {
+        width: 300px;
+        height: auto
+    }
+}

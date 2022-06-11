@@ -135,7 +135,7 @@ getData = async () => {
               if (!this.state.searchResults.length && !this.state.query) {
                 return ( <WorksContainer gallery={this.state.gallery}/> )
               } else if (!this.state.searchResults.length && this.state.query ) {
-                return <h2>No results, please try again.</h2>
+                return <h2 className="search-error">No results, please try again.</h2>
               }else {
                 return ( <WorksContainer gallery={this.state.searchResults}/> )
               }
