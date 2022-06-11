@@ -1,7 +1,6 @@
 import "../styles/Work.css";
 import {Link} from "react-router-dom";
-
-// this would just be the image itself 
+import PropTypes from 'prop-types';
 
 const Work = ({src, title, id}) => {
     if (src) {
@@ -18,4 +17,8 @@ const Work = ({src, title, id}) => {
 
 export default Work;
 
-//on click to update app here is messing up my router. 
+Work.propTypes = {
+    title: PropTypes.string,
+    src: PropTypes.string,
+    id: PropTypes.any
+  };

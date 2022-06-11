@@ -1,23 +1,6 @@
 import "../styles/Featured.css";
 import {Component} from "react";
-import {Link} from "react-router-dom";
-
-
-// const Featured = ({id, gallery, addToCollection, details}) => {
-//    return (
-//         <div className="featured-work">
-//             <div className="details">
-//                 <p>{details.title}</p>
-//                 {details.artistDisplayName === "Unknown" ? <p>{details.artistSuffix}</p> : <p>{details.artistDisplayName}</p>}
-//                 <p>{details.medium}</p>
-//                 <p>{details.dimensions}</p>
-//                 <p>{details.objectDate}</p>
-//             </div>
-//             <img src={details.primaryImage} alt={details.title}/>
-//             <button className="add-to-collection-btn" onClick={() => addToCollection(id)}>add to collection</button>
-//         </div>
-//     )
-// }
+import PropTypes from 'prop-types';
 
 class Featured extends Component {
     constructor({id, gallery}) {
@@ -26,10 +9,6 @@ class Featured extends Component {
     }
 
     componentDidMount() {
-    //    const details  = this.state.gallery.find(work => {
-    //      return parseInt(work.objectID) === parseInt(this.state.id)
-    //    })
-    //    this.setState({details: details})
        fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${this.state.id}`)
        .then(response => {
            if (response.ok) {
@@ -70,8 +49,8 @@ class Featured extends Component {
 
 export default Featured;
 
-//I should probably add some sort of confirmation that the user has added the item to their collection successfully. 
-
-// A possible workaround would be to make this a class component and refetch the data on pageload to ensure the interpolated data is referencable.
-
-
+Featured.propTypes = {
+    id: PropTypes.any,
+    gallery: PropTypes.array, 
+    addToCollection: PropTypes.func
+  };

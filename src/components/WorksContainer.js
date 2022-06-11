@@ -1,6 +1,6 @@
 import "../styles/WorksContainer.css";
 import Work from "./Work";
-// this is the cotainer that holds all of the work thumbnails
+import PropTypes from 'prop-types';
 
 const WorksContainer = ({gallery, findFeaturedWork}) => {
     const works = gallery.map(work => {
@@ -14,3 +14,8 @@ const WorksContainer = ({gallery, findFeaturedWork}) => {
 }
 
 export default WorksContainer
+
+WorksContainer.propTypes = {
+    gallery: PropTypes.array, 
+    findFeaturedWork: PropTypes.func
+  };
