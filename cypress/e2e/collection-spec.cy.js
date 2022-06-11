@@ -1,16 +1,15 @@
 describe("collection - spec", () => {
   beforeEach(() => {
     cy.intercept("GET", "https://collectionapi.metmuseum.org/public/collection/v1/search?&hasImages=true&q=Paintings&isHighlight=true", {fixture : "ids"})
-    cy.visit("http://localhost:3000/").wait(2000)     
+
+    cy.intercept("https://collectionapi.metmuseum.org/public/collection/v1/objects/764095", {fixture: "work1"} )
+    cy.intercept("https://collectionapi.metmuseum.org/public/collection/v1/objects/768547", {fixture: "work3"} )
+
+    cy.visit("http://localhost:3000/").wait(3000)  
   })
 
   it("should show the user all of the works that have been added to their collection", () => {
-    cy.intercept("GET", "https://collectionapi.metmuseum.org/public/collection/v1/objects/764095", {fixture: "work1"} )
-    cy.intercept("GET", "https://collectionapi.metmuseum.org/public/collection/v1/objects/764091", {fixture: "work2"} )
-    cy.intercept("GET", "https://collectionapi.metmuseum.org/public/collection/v1/objects/768547", {fixture: "work3"} )
-
     cy.get(".thumbnail").first().click()
-
     cy.get(".add-to-collection-btn").click()
     cy.get(".collection-btn").click()
     cy.contains("Collection")
@@ -19,5 +18,9 @@ describe("collection - spec", () => {
     cy.get(".collection-card-image").should("have.attr", "src").should("include", "https://images.metmuseum.org/CRDImages/ad/original/DP-18755-007.jpg")
   })
 
-  // test for error handling here in case there is nothing in the collection 
+  it("should display a message prompting the user to add to their collection if it is empty", () => {
+    cy.get(".collection-btn").click()
+    cy.contains("Collection")
+    cy.contains("No items in your collection, return to home to add.")
+  })
 })

@@ -29,53 +29,53 @@ class App extends Component {
 
 
   componentDidMount() {
-    fetch("https://collectionapi.metmuseum.org/public/collection/v1/search?&hasImages=true&q=Paintings&isHighlight=true")
-    .then(response =>{
-      if (response.ok) {
-        return response.json()
-      } else {
-        throw Error(response.statusText)
-      }
-    })
-    .then(data => {
-      data.objectIDs.forEach(id => {
-        fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`)
-        .then(response => {
-          if (response.ok) {
-            return response.json()
-          } else throw Error(response.statusText)
-        })
-        .then(data => {
-          if (!this.state.gallery.includes(data)) {
-            this.setState({gallery: [...this.state.gallery, data]})
-          }
-        })
-      })
-    })
-    .catch(error => console.log("error"))
+    // fetch("https://collectionapi.metmuseum.org/public/collection/v1/search?&hasImages=true&q=Paintings&isHighlight=true")
+    // .then(response =>{
+    //   if (response.ok) {
+    //     return response.json()
+    //   } else {
+    //     throw Error(response.statusText)
+    //   }
+    // })
+    // .then(data => {
+    //   data.objectIDs.forEach(id => {
+    //     fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`)
+    //     .then(response => {
+    //       if (response.ok) {
+    //         return response.json()
+    //       } else throw Error(response.statusText)
+    //     })
+    //     .then(data => {
+    //       if (!this.state.gallery.includes(data)) {
+    //         this.setState({gallery: [...this.state.gallery, data]})
+    //       }
+    //     })
+    //   })
+    // })
+    // .catch(error => console.log("error"))
 
 
-    // return this.getData()
+   this.getData()
   }
 
 
-// getData = async () => {
-//   //  const response = await fetch("https://collectionapi.metmuseum.org/public/collection/v1/search?&hasImages=true&q=Paintings&isHighlight=true");
-//   //   const data = await response.json();
-//   //   data.objectIDs.forEach(id => {
-//   //    this.getGalleryObject(id)
-//   //   });
-//     try {
-//       const response = await fetch("https://collectionapi.metmuseum.org/public/collection/v1/search?&hasImages=true&q=Paintings&isHighlight=true");
-//       const data = await response.json();
-//       console.log(data)
-//       data.objectIDs.forEach(id => {
-//        this.getGalleryObject(id)
-//       });
-//     }  catch(error) {
-//       this.setState({error: true})
-//     }
-//  }
+getData = async () => {
+  //  const response = await fetch("https://collectionapi.metmuseum.org/public/collection/v1/search?&hasImages=true&q=Paintings&isHighlight=true");
+  //   const data = await response.json();
+  //   data.objectIDs.forEach(id => {
+  //    this.getGalleryObject(id)
+  //   });
+    try {
+      const response = await fetch("https://collectionapi.metmuseum.org/public/collection/v1/search?&hasImages=true&q=Paintings&isHighlight=true");
+      const data = await response.json();
+      console.log(data)
+      data.objectIDs.forEach(id => {
+       this.getGalleryObject(id)
+      });
+    }  catch(error) {
+      this.setState({error: true})
+    }
+ }
 
   // getGalleryObject = async (id) => {
   //   try {
@@ -90,10 +90,16 @@ class App extends Component {
   //   }
   //   // const response = await  fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`)
   //   // const data = await response.json()
-  //     // if (!this.state.gallery.includes(data)) {
-  //     //   return this.setState({ gallery: [...this.state.gallery,data] });
-  //     // }
+  //   //   if (!this.state.gallery.includes(data)) {
+  //   //     this.setState({ gallery: [...this.state.gallery,data] });
+  //   //   }
   // }
+
+  getGalleryObject = (id) => {
+    fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`)
+    .then(response => response.json())
+    .then(data =>  this.setState({ gallery: [...this.state.gallery, data] }))
+  }
 
   addToCollection = (id) => {
     const addition = this.state.gallery.find(work => work.objectID === id)

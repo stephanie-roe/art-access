@@ -1,96 +1,11 @@
-{
-    "objectID": 768547,
-    "isHighlight": true,
-    "accessionNumber": "2018.6",
-    "accessionYear": "2018",
-    "isPublicDomain": true,
-    "primaryImage": "https://images.metmuseum.org/CRDImages/ad/original/AW.Weir.DebraForce.2017.jpg",
-    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/ad/web-large/AW.Weir.DebraForce.2017.jpg",
-    "additionalImages": [],
-    "constituents": [
+
     {
-    "constituentID": 201497,
-    "role": "Artist",
-    "name": "Charles E. Weir",
-    "constituentULAN_URL": "(not assigned)",
-    "constituentWikidata_URL": "https://www.wikidata.org/wiki/Q96750096",
-    "gender": ""
-    }
-    ],
-    "department": "The American Wing",
-    "objectName": "Painting",
-    "title": "The Wood Sawyer",
-    "culture": "American",
-    "period": "",
-    "dynasty": "",
-    "reign": "",
-    "portfolio": "",
-    "artistRole": "Artist",
-    "artistPrefix": "",
-    "artistDisplayName": "Charles E. Weir",
-    "artistDisplayBio": "American, 1823–1845",
-    "artistSuffix": "",
-    "artistAlphaSort": "Weir, Charles E.",
-    "artistNationality": "American",
-    "artistBeginDate": "1823",
-    "artistEndDate": "1845",
-    "artistGender": "",
-    "artistWikidata_URL": "https://www.wikidata.org/wiki/Q96750096",
-    "artistULAN_URL": "(not assigned)",
-    "objectDate": "1842",
-    "objectBeginDate": 1842,
-    "objectEndDate": 1842,
-    "medium": "Oil on board",
-    "dimensions": "22 1/4 × 18 1/4 in. (56.5 × 46.4 cm)\r\nFramed: 29 7/8 × 25 5/8 in. (75.9 × 65.1 cm)",
-    "measurements": [
-    {
-    "elementName": "Framed",
-    "elementDescription": null,
-    "elementMeasurements": {
-    "Height": 75.88265,
-    "Width": 65.08763
-    }
-    },
-    {
-    "elementName": "Overall",
-    "elementDescription": null,
-    "elementMeasurements": {
-    "Height": 56.515114,
-    "Width": 46.35509
-    }
-    }
-    ],
-    "creditLine": "Maria DeWitt Jesup Fund, 2018",
-    "geographyType": "",
-    "city": "",
-    "state": "",
-    "county": "",
-    "country": "",
-    "region": "",
-    "subregion": "",
-    "locale": "",
-    "locus": "",
-    "excavation": "",
-    "river": "",
-    "classification": "",
-    "rightsAndReproduction": "",
-    "linkResource": "",
-    "metadataDate": "2022-02-09T04:42:08.947Z",
-    "repository": "Metropolitan Museum of Art, New York, NY",
-    "objectURL": "https://www.metmuseum.org/art/collection/search/768547",
-    "tags": [
-    {
-    "term": "Men",
-    "AAT_URL": "http://vocab.getty.edu/page/aat/300025928",
-    "Wikidata_URL": "https://www.wikidata.org/wiki/Q8441"
-    },
-    {
-    "term": "Tools",
-    "AAT_URL": "http://vocab.getty.edu/page/aat/300024841",
-    "Wikidata_URL": "https://www.wikidata.org/wiki/Q39546"
-    }
-    ],
-    "objectWikidata_URL": "https://www.wikidata.org/wiki/Q104413242",
-    "isTimelineWork": false,
-    "GalleryNumber": "758"
+        "objectID": 768547,
+        "primaryImage": "https://images.metmuseum.org/CRDImages/ad/original/AW.Weir.DebraForce.2017.jpg",
+        "title": "The Wood Sawyer",
+        "artistDisplayName": "Charles E. Weir",
+        "objectDate": "1842",
+        "medium": "Oil on board",
+        "dimensions": "22 1/4 × 18 1/4 in. (56.5 × 46.4 cm)\r\nFramed: 29 7/8 × 25 5/8 in. (75.9 × 65.1 cm)"
+
     }
