@@ -4,22 +4,22 @@
 }
 
 .work {
-    height: auto;
-    width: 250px;
-    display: flex;
-    justify-content: center;
     align-items: center;
+    display: flex;
+    height: auto;
+    justify-content: center;
     margin: 10px;
+    width: 250px;
 }
 
 @media screen and (max-width: 415px) {
     .work {
-        width: 300px;
         height: auto;
         margin: 5px;
+        width: 300px;
     }
     .thumbnail {
+        height: auto;
         width: 300px;
-        height: auto
     }
 }
