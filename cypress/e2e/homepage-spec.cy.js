@@ -27,7 +27,7 @@ describe("homepage", () => {
   it("should communicate to the user if there is an error with the server", () => {
     cy.intercept("GET", "https://collectionapi.metmuseum.org/public/collection/v1/search?&hasImages=true&q=Paintings&isHighlight=true", {statusCode: 500, message: "Server Error"})
     cy.visit("http://localhost:3000/")
-    cy.contains("Oh no!")
+    cy.contains("Apologies, we are experiencing network difficulties. Please try again later.")
   })
 
   it("should return a refined search to the user according to their query", () => {

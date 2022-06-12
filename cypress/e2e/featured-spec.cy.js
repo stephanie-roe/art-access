@@ -30,7 +30,7 @@ describe("featured spec", () => {
   })
 
   it("should change the url to end with the id of the featured work", () => {
-    cy.get(".thumbnail").first().click()
+    cy.get(".thumbnail", {timemout: 3000}).first().click()
     cy.url().should("eq","http://localhost:3000/764095")
   })
 })

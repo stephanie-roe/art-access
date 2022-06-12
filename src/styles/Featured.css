@@ -1,79 +1,78 @@
 .featured-parent-container {
-    width: 100vw;
-    height: auto;
-    display: flex;
-    justify-content: center;
     align-items: center;
+    display: flex;
+    height: auto;
+    justify-content: center;
+    width: 100vw;
 }
 
 .featured-image {
-    height: auto;
-    width: 500px;
-    margin: 20px;
     box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+    height: auto;
+    margin: 20px;
+    width: 500px;
 }
 
 .featured-work {
-    width: 70%;
-    height: 50%;
-    margin: 40px;
-    padding: 40px;
+    align-items: center;
     background: rgba(255, 255, 255, 0.13);
+    box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
     gap: 30px;
-    box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+    height: 50%;
+    justify-content: center;
+    margin: 40px;
+    padding: 40px;
+    width: 70%;
 }
 
 .details-and-btn-container {
-    height: 600px;
-    display: flex;
-    /* border: solid 1px green; */
-    flex-direction: column;
-    justify-content: flex-end;
     align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+    justify-content: flex-end;
 }
 
 .add-to-collection-btn {
-    margin-top: 70px;
-    border-radius: 20px;
-    color: white;
     background-color: #474647;
     border: none;
+    border-radius: 20px;
+    box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+    color: white;
+    margin-top: 70px;
     padding: 10px 40px;
     width: 60%;
-    box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
 }
 
 .title {
-    font-weight: bolder;
     font-size: larger;
+    font-weight: bolder;
 }
 
 @media screen and (max-width: 415px) {
     .featured-image {
-        width: 275px;
         height: auto;
         margin: 0px;
         margin-top: 10px;
+        width: 275px;
     }
 
     .featured-work {
-        width: 100vw;
-        height: auto;
         display: flex;
         flex-direction: column-reverse;
+        height: auto;
+        width: 100vw;
  
     }
 
     .featured-parent-container {
-        width: 100vw;
+        display: flex;
         height: auto;
         padding: 0px;
         margin: 0px;
-        display: flex;
+        width: 100vw;
     }
 
     .title {
@@ -89,7 +88,7 @@
     }
 
     .details-and-btn-container {
-        justify-content: flex-start;
         height: auto;
+        justify-content: flex-start;
     }
 }

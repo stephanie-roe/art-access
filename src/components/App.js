@@ -2,7 +2,7 @@ import { Component } from 'react';
 import '../styles/App.css';
 import NavBar from "./NavBar";
 import WorksContainer from "./WorksContainer";
-import {Route, Switch} from "react-router-dom"; 
+import { Route, Switch } from "react-router-dom"; 
 import Featured from "./Featured";
 import CollectionContainer from "./CollectionContainer";
 
@@ -21,7 +21,7 @@ class App extends Component {
    this.getData()
   }
 
-getData = async () => {
+  getData = async () => {
     try {
       const response = await fetch("https://collectionapi.metmuseum.org/public/collection/v1/search?&hasImages=true&q=Paintings&isHighlight=true");
       const data = await response.json();
@@ -31,7 +31,7 @@ getData = async () => {
     }  catch(error) {
       this.setState({error: true})
     }
- }
+  }
 
   getGalleryObject = (id) => {
     fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`)
@@ -63,7 +63,7 @@ getData = async () => {
 
   render() {
     if (this.state.error) {
-      return <h1>Oh no!</h1>
+      return <h1>Apologies, we are experiencing network difficulties. Please try again later.</h1>
     } else {
       return (
         <div>
