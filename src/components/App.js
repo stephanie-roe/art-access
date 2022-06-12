@@ -47,9 +47,6 @@ class App extends Component {
   }
 
   returnSearch = (event) => {
-    console.log("1", this.state.gallery[0])
-    console.log("2", this.state.gallery[1])
-    console.log("3", this.state.gallery[2])
     this.setState( {query: event.target.value, searchResults: this.state.gallery });
     const result = this.state.gallery.filter(work => {
       return work.artistDisplayName.toLowerCase().includes(event.target.value.toLowerCase());
