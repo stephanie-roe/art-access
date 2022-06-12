@@ -9,7 +9,7 @@ describe("collection - spec", () => {
   })
 
   it("should show the user all of the works that have been added to their collection", () => {
-    cy.get(".thumbnail").first().click()
+    cy.get(".thumbnail", {timeout: 3000}).first().click()
     cy.get(".add-to-collection-btn").click()
     cy.get(".collection-btn").click()
     cy.contains("Collection")
