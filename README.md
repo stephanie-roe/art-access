@@ -14,7 +14,7 @@
 
 ## Introduction
 
-Art Access is an application meant to expand the impact of art beyond museum walls. Users are able to browse the entire collection, search for works by artist name and save works to their very own collection. 
+Art Access is an application meant to expand the impact of art beyond museum walls. Users are able to browse the entire gallery, search for works by artist name and save works to their very own collection. 
 
 Using five weeks of learnings in React, Router and Cypress E2E testing, this project was developed within a five day solo sprint. 
 
@@ -41,7 +41,7 @@ Using five weeks of learnings in React, Router and Cypress E2E testing, this pro
 ## Features
 
 - Upon page load, the user is presented with works of art to browse.
-- Using a live search, the user can type in an artist's name and see a list of their works (or an error message if no works exist). 
+- Using a live search, the user can type in an artist's name and see a list of their works (or an error message if no works exist for that query). 
 - When a user clicks on a work of art, they are able to review the extended details of that piece. 
 - Users can add pieces to their personal collection.
 - Users can utilize the forward/backward arrows to navigate their history on the site and can share a specific URL pertaining to each work of art.
@@ -49,7 +49,8 @@ Using five weeks of learnings in React, Router and Cypress E2E testing, this pro
 
 ## Page Demo
 
-ADD GIFS HERE
+![GIF of homepage and search demo](./src/assets/art-access-search.gif)
+![GIF of add to collection demo](./src/assets/art-access-collection.gif)
 
 ## Future Extensions
 
