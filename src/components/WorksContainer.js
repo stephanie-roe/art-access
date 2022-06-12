@@ -13,7 +13,7 @@ const WorksContainer = ({gallery, findFeaturedWork}) => {
     )
 }
 
-export default WorksContainer
+export default WorksContainer;
 
 WorksContainer.propTypes = {
     gallery: PropTypes.array, 

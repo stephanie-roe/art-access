@@ -7,7 +7,6 @@ const CollectionContainer = ({collection}) => {
         return (<CollectionCard details={work} key={work.objectID}/>)
     })
 
-
     return (
         <div className="collection-parent-container">
             <div className="heading-container">
@@ -19,7 +18,6 @@ const CollectionContainer = ({collection}) => {
             </div>}  
         </div>
     )
-    
 }
 
 export default CollectionContainer;

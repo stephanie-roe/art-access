@@ -1,5 +1,5 @@
 import "../styles/Work.css";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
 
 const Work = ({src, title, id}) => {
@@ -12,7 +12,6 @@ const Work = ({src, title, id}) => {
             </Link>
         )
     } 
-
 }
 
 export default Work;
