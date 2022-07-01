@@ -1,6 +1,6 @@
 name: Art Access Testing
 
-on: [push]
+on: push
 
 jobs: 
   cypress-run:
@@ -13,4 +13,5 @@ jobs:
         with:
           build: npm run build
           start: npm start
+          wait-on : http://localhost:3000
 
