@@ -5,7 +5,7 @@ describe("collection - spec", () => {
     cy.intercept("https://collectionapi.metmuseum.org/public/collection/v1/objects/764095", {fixture: "work1"} )
     cy.intercept("https://collectionapi.metmuseum.org/public/collection/v1/objects/768547", {fixture: "work3"} )
 
-    cy.visit("http://localhost:3000/",{timeout: 2000})
+    cy.visit("http://localhost:3000/",{timeout: 5000})
   })
 
   it("should show the user all of the works that have been added to their collection", () => {
